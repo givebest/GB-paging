@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GB-paging</title>
+    <link rel="stylesheet" href="css/typo/typo.css">
+    <link rel="stylesheet" href="css/GB-paging.css">
+    <style>
+    	.wrapper{
+    		padding:20px 40px;
+    	}
+    	.fork-github{
+    		position: fixed;
+    		right: -100px;
+    		top: 45px;
+    		z-index: 9999;
+    		padding: 2px 100px;
+    		font-size: 12px;
+    		background-color: #444;
+    		border: 1px solid #000;
+    		-webkit-transform: rotate(45deg);
+    			-ms-transform: rotate(45deg);
+    				transform: rotate(45deg);
+    		text-align: center;
+    	}
+    	.fork-github a{
+    		color: #fff;
+    	}
+
+    </style>
+  </head>
+  <body ontouchstart>
+    
+	
+	
+
+	<div class="wrapper typo" id="wrapper">
+		
+		<h1>GB-paging.js</h1>
+
+		<h2>DEMO</h2>
+
+
+    <h3>普通</h3>
+    
+    <div id="gbpaging" class="gb-paging">
+        <!-- <a class="disabled">首页</a>
+        <a class="disabled"><</a>
+        <a href="javascript:;" class="">1</a>
+        <a href="javascript:;" class="gb-paging-current">2</a>
+        <a href="javascript:;" class="">3</a>
+        <a href="javascript:;" class="">4</a>
+        <a href="javascript:;" class="">5</a>
+        <a href="javascript:;" class="">6</a>
+        <a href="javascript:;" class="">7</a>
+        <span class="gb-paging-ellipsis">...</span>
+        <a href="javascript:;" class="">24</a>
+        <a href="javascript:;" class="">></a>
+        <a href="javascript:;" class="">尾页</a>
+        <div class="gb-paging-info">
+            当前第<b class="gb-paging-hightlight">1</b>页/共36页
+        </div> -->
+    </div>
+
+
+<pre>
+gbPaging({
+    total: 101,
+    paramName: 'p',
+    curPage: getPage('p', '#'),
+    size: 5,
+    prevText: '<',
+    nextText: '>',
+    pageInfo: '<b>{{currentPage}}</b>/<b>{{totalPages}}</b>',
+    eventType: 'click'
+});
+</pre>
+
+    <h3>另一个分页</h3>
+    
+    <div id="paging1" class="gb-paging"></div>
+
+
+<pre>
+gbPaging({
+    eleId: 'paging1',
+    total: 54,
+    size: 10,
+    prevText: false,
+    nextText: false,
+    paramName: 'p1',
+    curPage: getPage('p1', '#'),
+    pageInfo: false,
+    eventType: 'click'
+});
+</pre>
+
+
+<h3>刷新带参数</h3>
+
+<div id="paging2"  class="gb-paging"></div>
+
+<pre>
+gbPaging({
+    eleId: 'paging2',
+    total: 2500,
+    paramName: 'page',
+    curPage: getPage('page', '?type=1&name=2&'),
+    goUrl: '?type=1&name=2&{{n}}'
+});
+</pre>
+
+	</div>
+	
+	<div class="fork-github">
+		<a href="https://github.com/givebest/GB-paging">Fork me on Github</a>
+	</div>
+
+
+	<!-- <script src="/Javascript/lib/requirejs/2.2.0/require.js"></script> -->
+	<script>
+		/*requirejs.config({
+			'baseUrl': 'js',
+			'paths': {
+				'gbPaging': 'gb-Paging.2',
+			}
+		});
+
+		requirejs(['gbPaging'], function(){
+
+			gbPaging({
+	            total: 101,
+	            paramName: 'p',
+	            curPage: getPage('p', '#'),
+	            size: 5,
+	            prevText: '<',
+	            nextText: '>',
+	            pageInfo: '<b>{{currentPage}}</b>/<b>{{totalPages}}</b>',
+	            eventType: 'click'
+	        });	
+		});*/
+	</script>
+    <script src="js/GB-paging.js"></script>
+    <script>
+
+
+
+        gbPaging({
+            total: 101,
+            paramName: 'p',
+            curPage: getPage('p', '#'),
+            size: 5,
+            prevText: '<',
+            nextText: '>',
+            pageInfo: '<b>{{currentPage}}</b>/<b>{{totalPages}}</b>',
+            eventType: 'click'
+        });
+
+        gbPaging({
+        	eleId: 'paging1',
+            total: 54,
+            size: 10,
+            prevText: false,
+            nextText: false,
+            paramName: 'p1',
+            curPage: getPage('p1', '#'),
+            pageInfo: false,
+            eventType: 'click'
+        });
+
+        gbPaging({
+        	eleId: 'paging2',
+            total: 2500,
+            paramName: 'page',
+            curPage: getPage('page', '?type=1&name=2&'),
+            goUrl: '?type=1&name=2&{{n}}'
+        });
+        
+        function getPage(pname, other){
+            var page = window.location.search.replace( other + pname + '=', '') || 1;
+            return parseInt(page);
+        }
+    </script>
+  </body>
+</html>
