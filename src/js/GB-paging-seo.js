@@ -84,7 +84,7 @@
 				var html = [];
 
 				if (args.isSEO) this.hashChange();
-				console.log('build', args);
+				// console.log('build', args);
 
 				// 没有数据
 			    if (args.pages <= 1) {
@@ -188,9 +188,7 @@
 			 * @return {[type]} [description]
 			 */
 		  	GbPaging.prototype.hashChange = function() {
-		  		var re = parseUrl(args.goUrl, args.paramName) + '([0-9]+)';
-		  			curPage = parseInt(window.location.hash.match(new RegExp(re))[1] || 1);
-	  			args.curPage = curPage;
+	  			args.curPage = this.getPage();
 		  	}
 
 		  	/**
@@ -199,10 +197,20 @@
 		  	 */
 		  	GbPaging.prototype.eventsHash = function() {
 		  		var _this = this;
-		  		window.location.hash = parseUrl(args.goUrl, args.paramName) + '1';
+		  		window.location.hash = parseUrl(args.goUrl, args.paramName) + this.getPage();
 		  		bind(window, 'hashchange', function() {
 	  				_this.build();
 	  			});
+		  	}
+
+		  	/**
+		  	 * [getPage 根据hash获取页码]
+		  	 * @return {[type]} [description]
+		  	 */
+		  	GbPaging.prototype.getPage = function() {
+		  		var hashPage = window.location.hash.match(new RegExp(parseUrl(args.goUrl, args.paramName) + '([0-9]+)')),
+		  			curPage = hashPage ? hashPage[1] : 1;
+		  		return parseInt(curPage);
 		  	}
 
 			/**

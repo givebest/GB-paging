@@ -58,7 +58,7 @@
 	<em><a href="https://developers.google.com/webmasters/ajax-crawling/docs/getting-started">详细：https://developers.google.com/webmasters/ajax-crawling/docs/getting-started</a></em>
 	</p>
 
-	<p>不过，<del>Google 已经放弃支持了，</del>详见：
+	<p>不过，<del>Google 已经不建议使用了，</del>详见：
 	<em><a href="https://webmasters.googleblog.com/2015/10/deprecating-our-ajax-crawling-scheme.html">https://webmasters.googleblog.com/2015/10/deprecating-our-ajax-crawling-scheme.html</a></em>.
 	</p>
 	<ol>
@@ -107,15 +107,10 @@ function getPage(pname, other){
         gbPaging({
             total: 101,
             paramName: 'p',
-            curPage: getPage('p', '!#'),
             size: 5,
             isSEO: true
         });
 
-        function getPage(pname, other){
-            var page = window.location.search.replace( other + pname + '=', '') || 1;
-            return parseInt(page);
-        }
 
     </script>
   </body>
